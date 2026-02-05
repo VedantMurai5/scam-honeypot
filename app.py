@@ -370,10 +370,10 @@ def handle_message():
             # Check if we should end the session
             if SessionManager.should_end_session(session):
                 # Enhance agent notes
-                session["agent_notes"] += f"Session concluded after {len(session['messages'])} messages. "
-                
-                # Send final result to GUVI
-                send_final_result(session)
+                if "Session concluded" not in session["agent_notes"]:
+                    session["agent_notes"] += f"Session concluded after {len(session['messages'])} messages. "
+                    # Send final result to GUVI
+                    send_final_result(session)
             
             return jsonify({
                 "status": "success",
