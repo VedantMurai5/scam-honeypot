@@ -170,7 +170,11 @@ IMPORTANT: Keep responses brief and natural. Don't be overly formal. Respond ONL
 
         # Format conversation for Gemini
         conversation_text = system_prompt + "\n\nConversation:\n"
-        for msg in conversation_history:
+        
+        # Add history but limit to last 10 messages to avoid token limits
+        recent_history = conversation_history[-10:] if len(conversation_history) > 10 else conversation_history
+        
+        for msg in recent_history:
             sender = "Scammer" if msg["sender"] == "scammer" else "You"
             conversation_text += f"{sender}: {msg['text']}\n"
         
