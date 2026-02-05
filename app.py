@@ -14,7 +14,8 @@ app = Flask(__name__)
 
 # Configuration
 API_KEY = os.getenv('API_KEY', 'your-secret-api-key-change-this')
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')  # Changed from ANTHROPIC_API_KEY
+# Fallback to hardcoded key for hackathon deployment if env var is missing
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyBRIzJ_SlPwH6Z5Vecrv5FmSqT9IVCxtWc')
 GUVI_CALLBACK_URL = "https://hackathon.guvi.in/api/updateHoneyPotFinalResult"
 
 # Session storage (in production, use Redis or a database)
